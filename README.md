@@ -111,4 +111,14 @@ Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
 
 ---
 
+## Authors
+
+- Ana Maria Duran
+- Johan Estrada
+- Juan David Contreras
+- Laura Natalia Rojas
+- Mauricio Monroy
+- Samuel Rojas
+
+
 **Nota**: Este README se actualizará conforme avance el proyecto.
