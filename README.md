@@ -107,7 +107,7 @@ Y abre [http://localhost:5173](http://localhost:5173/) en tu navegador.
 ---
 
 ## 📄 Licencia
-Este proyecto está licenciado bajo la [Licencia MIT](LICENCIA).
+Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
 
 ---
 
