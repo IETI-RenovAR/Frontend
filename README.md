@@ -1,124 +1,50 @@
-# RenovAR - Frontend
-Aplicación de diseño y visualización 3D para remodelación de espacios, conexión con carpinteros para remodelaciones inteligentes
+# Welcome to your Expo app 👋
 
-## **Descripción**
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-RenovAR es una plataforma que permite a los usuarios **visualizar y diseñar** la remodelación de sus espacios en 2D/3D antes de realizar cambios físicos, evitando errores costosos y conectándolos con carpinteros profesionales.
+## Get started
 
----
+1. Install dependencies
 
-## **Estructura del Proyecto**
+   ```bash
+   npm install
+   ```
 
-```
-renovar-frontend/
-├── public/               # Assets estáticos (imágenes, favicon, etc.)
-├── src/                  # Código fuente
-│   ├── assets/           # Recursos multimedia (fuentes, imágenes, etc.)
-│   ├── components/       # Componentes reutilizables (Layout, UI, etc.)
-│   ├── contexts/         # Contextos de React (Auth, Theme, etc.)
-│   ├── pages/            # Componentes de páginas (Home, Login, Designs, etc.)
-│   ├── services/         # Lógica de conexión a APIs (axios, fetch)
-│   ├── App.jsx           # Componente principal
-│   ├── main.jsx          # Punto de entrada de la app
-│   └── routes.jsx        # Configuración de rutas (React Router)
-├── .gitignore            # Archivos ignorados por Git
-├── README.md             # Documentación del proyecto
-├── eslint.config.js      # Configuración de ESLint
-├── index.html            # HTML base
-├── package.json          # Dependencias y scripts
-└── vite.config.js        # Configuración de Vite
-```
+2. Start the app
 
----
+   ```bash
+   npx expo start
+   ```
 
-## **Configuración Inicial**
+In the output, you'll find options to open the app in a
 
-### **Requisitos**
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-- Node.js (v18+)
-- npm / yarn / pnpm
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-### **Instalación**
+## Get a fresh project
 
-```
-git clone https://github.com/IETI-RenovAR/Frontend.git
-cd Frontend
-npm install
+When you're ready, run:
+
+```bash
+npm run reset-project
 ```
 
-### **Variables de Entorno**
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-*Para futura implementación*
+## Learn more
 
+To learn more about developing your project with Expo, look at the following resources:
 
-Crea un archivo `.env` en la raíz del proyecto:
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
+## Join the community
 
-```
-VITE_USERS_SERVICE_URL=http://localhost:3001
-VITE_DESIGNS_SERVICE_URL=http://localhost:3002
-VITE_PRODUCTS_SERVICE_URL=http://localhost:3003
-VITE_PURCHASES_SERVICE_URL=http://localhost:3004
-```
+Join our community of developers creating universal apps.
 
-### **Comandos Útiles**
-
-| **Comando** | **Descripción** |
-| --- | --- |
-| `npm run dev` | Inicia servidor de desarrollo (Vite) |
-| `npm run build` | Genera versión para producción |
-| `npm run preview` | Previsualiza build de producción |
-
----
-
-## **🔧 Tecnologías Principales**
-
-- **Frontend**: React + Vite
-- **HTTP Client**: Axios
-
----
-
-## **Diseño y Estructura**
-
-- **Sistema de diseño**: Basado en Material-UI con personalización de temas.
-- **Arquitectura**: Componentes funcionales + hooks.
-- **Estado global**: Context API (para autenticación y temas).
-
----
-
-## **Próximos Pasos**
-
-1. ¡Continuar con las implementaciones!
-2. **Integrar Three.js** para visualización 3D interactiva.
-3. **Conectar con backend** (microservicios de Users, Designs, etc.).
-4. **Implementar autenticación** (JWT + rutas protegidas).
-5. **Desplegar**.
-
----
-
-**✨ ¿Listo para transformar espacios?**
-
-```
-npm run dev
-```
-
-Y abre [http://localhost:5173](http://localhost:5173/) en tu navegador.
-
----
-
-## 📄 Licencia
-Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
-
----
-
-## Authors
-
-- Ana Maria Duran
-- Johan Estrada
-- Juan David Contreras
-- Laura Natalia Rojas
-- Mauricio Monroy
-- Samuel Rojas
-
-
-**Nota**: Este README se actualizará conforme avance el proyecto.
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
