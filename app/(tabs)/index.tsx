@@ -16,7 +16,7 @@ export default function Index() {
         source={require('../../assets/images/logo.png')}
         style={{ width: screenWidth * 0.8, height: screenWidth * 0.5, resizeMode: 'contain' }}
       />
-      <Text style={styles.logo}>HOME MORPH</Text>
+      <Text style={styles.logo}>RenovAR</Text>
       <Text style={styles.slogan}>DONDE EL DISEÑO SE ENCUENTRA CON EL FUTURO</Text>
 
       <TouchableOpacity onPress={handleSwipe} style={styles.swipeArea}>

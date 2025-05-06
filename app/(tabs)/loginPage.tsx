@@ -1,98 +1,163 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView} from 'react-native';
 import { useLogin } from '../../hooks/useLogin';
 
-export default function HomeScreen() {
-
+export default function LoginScreen() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, loading, error } = useLogin();
 
-
   const handleLogin = async () => {
-    const result = await login(email, password);
+    const result = await login(email, password);  
     if (result) {
       console.log('JWT:', result);
       try {
         await AsyncStorage.setItem('userToken', result.token);
         await AsyncStorage.setItem('tokenExpirationDate', result.expirationDate);
+        router.push('/(tabs)/home');
       } catch (error) {
         console.error("Error al guardar el token", error);
       }
-      
-      router.push('/(tabs)/home'); // Cambia a la página de inicio después de iniciar sesión
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Email</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter your email"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.header}>LOG IN</Text>
 
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter your password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />  
+      <View style={styles.formContainer}>
+        <Text style={styles.label}>YOUR EMAIL</Text>
+        <TextInput
+          style={styles.input}
+          placeholder=""
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          placeholderTextColor="#333"
+        />
 
-      {error && <Text style={styles.errorText}>{error}</Text>}
+        <View style={styles.passwordRow}>
+          <Text style={styles.label}>PASSWORD</Text>
+          <TouchableOpacity>
+            <Text style={styles.forgotText}>Forgot</Text>
+          </TouchableOpacity>
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder=""
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          placeholderTextColor="#333"
+        />
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-    </View>
+        {error && <Text style={styles.errorText}>{error}</Text>}
+
+        <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
+          <Text style={styles.buttonText}>{loading ? 'Loading...' : 'Log in'}</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.orText}>Or sign up with social account</Text>
+
+        <View style={styles.socialButtons}>
+          <TouchableOpacity style={styles.socialButton}>
+            <Text style={styles.socialText}>📘 Facebook</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialButton}>
+            <Text style={styles.socialText}>✉️ Gmail</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
+    backgroundColor: '#fdf5ec',
     padding: 20,
-    paddingTop: 100,
-    backgroundColor: '#fff',
+    alignItems: 'center',
+    paddingTop: 80,
+  },
+  header: {
+    fontSize: 38,
+    fontWeight: 'bold',
+    color: '#4c2a1c',
+    marginBottom: 30,
+  },
+  formContainer: {
+    width: '100%',
+    marginTop: 10,
   },
   label: {
-    fontSize: 16,
-    marginBottom: 6,
-    fontWeight: '500',
+    fontSize: 12,
+    color: '#4c2a1c',
+    marginBottom: 4,
+    textTransform: 'uppercase',
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    backgroundColor: '#f9f9f9',
-    padding: 10,
+    borderBottomWidth: 1,
+    borderColor: '#4c2a1c',
     marginBottom: 20,
-    borderRadius: 6,
+    fontSize: 14,
+    paddingVertical: 8,
+    color: '#333',
+  },
+  passwordRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  forgotText: {
+    fontSize: 12,
+    color: '#4c2a1c',
   },
   button: {
-    backgroundColor: '#007bff',
-    padding: 12,
-    borderRadius: 6,
+    backgroundColor: '#4c2a1c',
+    paddingVertical: 14,
+    borderRadius: 30,
     alignItems: 'center',
+    marginTop: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
   errorText: {
     color: 'red',
     fontSize: 14,
-    marginBottom: 10,
+    marginTop: 8,
     textAlign: 'center',
   },
+  orText: {
+    textAlign: 'center',
+    marginVertical: 25,
+    color: '#444',
+  },
+  socialButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  socialButton: {
+    borderWidth: 1,
+    borderColor: '#000',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+  },
+  socialText: {
+    fontSize: 14,
+    fontWeight: '500',
+  },
 });
-
