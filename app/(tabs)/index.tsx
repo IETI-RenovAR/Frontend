@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -18,10 +18,6 @@ export default function Index() {
       />
       <Text style={styles.logo}>RenovAR</Text>
       <Text style={styles.slogan}>DONDE EL DISEÑO SE ENCUENTRA CON EL FUTURO</Text>
-
-      <TouchableOpacity onPress={handleSwipe} style={styles.swipeArea}>
-        <Text style={styles.swipeText}>Desliza (o toca) para continuar</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -29,16 +25,17 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f6f2e7',
+    backgroundColor: '#fff7ec',
     justifyContent: 'center',
     alignItems: 'center',
   },
   logo: {
-    fontSize: 32,
-    fontWeight: 'bold',
+    fontSize: 34,
+    fontFamily: 'Nunito-Bold',
   },
   slogan: {
-    fontSize: 14,
+    fontSize: 12,
+    fontFamily: 'Nunito-Bold',
     marginTop: 10,
   },
   swipeArea: {
@@ -47,5 +44,6 @@ const styles = StyleSheet.create({
   swipeText: {
     color: '#555',
     fontSize: 16,
+    fontFamily: 'Nunito-Bold',
   },
 });
