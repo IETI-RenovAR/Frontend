@@ -23,7 +23,7 @@ export default function HomeScreen() {
         console.error("Error al guardar el token", error);
       }
       
-      router.push('/(tabs)/home'); // Cambia a la página de inicio después de iniciar sesión
+      router.push('./(tabs)/home'); // Cambia a la página de inicio después de iniciar sesión
     }
   };
 

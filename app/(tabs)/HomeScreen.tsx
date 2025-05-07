@@ -1,18 +1,18 @@
+import { router } from 'expo-router';
 import React, { JSX, useState } from 'react';
 import {
-  GestureResponderEvent,
   Image,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 
 export default function HomeScreen(): JSX.Element {
   const [activeTab, setActiveTab] = useState<'Spaces' | 'Things'>('Spaces');
 
-  const handlePress = (event: GestureResponderEvent): void => {
-    console.log('Pressed item');
+  const handleImageSelect = (imageKey: string) => {
+    router.push({ pathname: '/itemScreen', params: { image: imageKey } });
   };
 
   return (
@@ -41,14 +41,14 @@ export default function HomeScreen(): JSX.Element {
       <View style={styles.projectContainer}>
         {activeTab === 'Spaces' ? (
             <>
-          <TouchableOpacity onPress={handlePress} style={styles.projectButton}>
+          <TouchableOpacity onPress={() => handleImageSelect('bedroom')} style={styles.projectButton}>
             <Image
               source={require('../../assets/images/bedroom.png')}
               style={styles.image}
             />
             <Text style={styles.projectText}>Bedroom</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={handlePress} style={styles.projectButton}>
+          <TouchableOpacity onPress={() => handleImageSelect('kitchen')} style={styles.projectButton}>
           <Image
             source={require('../../assets/images/kitchen.png')}
             style={styles.image}
@@ -59,14 +59,14 @@ export default function HomeScreen(): JSX.Element {
         </>
         ) : (
           <>
-            <TouchableOpacity onPress={handlePress} style={styles.projectButton}>
+            <TouchableOpacity onPress={() => handleImageSelect('chair')} style={styles.projectButton}>
               <Image
                 source={require('../../assets/images/chair.png')}
                 style={styles.image}
               />
               <Text style={styles.projectText}>Chair</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={handlePress} style={styles.projectButton}>
+            <TouchableOpacity onPress={() => handleImageSelect('table')} style={styles.projectButton}>
               <Image
                 source={require('../../assets/images/table.png')}
                 style={styles.image}
