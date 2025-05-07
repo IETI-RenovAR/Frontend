@@ -20,7 +20,7 @@ export default function LoginScreen() {
       try {
         await AsyncStorage.setItem('userToken', result.token);
         await AsyncStorage.setItem('tokenExpirationDate', result.expirationDate);
-        router.push('/(tabs)/home');
+        router.push('/actionPage');
       } catch (error) {
         console.error("Error al guardar el token", error);
       }
