@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useLogin } from '../../hooks/useLogin';
 
@@ -9,9 +9,15 @@ const { width, height } = Dimensions.get('window');
 
 export default function LoginScreen() {
   const router = useRouter();
-  const [email, setEmail] = useState('laura.rojas-r@mail.escuelaing.edu.co');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, loading, error } = useLogin();
+
+  useEffect(() => {
+    setEmail('');
+    setPassword('');
+  }, []);
+
   const handleLogin = async () => {
     const result = await login(email, password);
     if (result) {
@@ -60,6 +66,8 @@ export default function LoginScreen() {
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
+              placeholder="Enter your email"
+              placeholderTextColor="#999"
             />
 
             <View style={styles.passwordFieldWrapper}>
@@ -70,6 +78,8 @@ export default function LoginScreen() {
                   value={password}
                   onChangeText={setPassword}
                   secureTextEntry
+                  placeholder="Enter your password"
+                  placeholderTextColor="#999"
                 />
                 <TouchableOpacity style={styles.forgotWrapper}>
                   <Text style={styles.forgotText}>Forgot</Text>

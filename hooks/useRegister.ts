@@ -5,28 +5,65 @@ export function useRegister() {
   const [error, setError] = useState('');
   const usersURL = 'http://20.83.172.95:8080/v1';
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (username: string, email: string, password: string) => {
     setLoading(true);
     setError('');
-    // Toca desbloquear el endpoint en el repositorio de users y eliminar lastname del DTO
+    
     try {
+      // Validaciones básicas
+      if (!username || !email || !password) {
+        throw new Error('Todos los campos son requeridos');
+      }
+
+      if (password.length < 6) {
+        throw new Error('La contraseña debe tener al menos 6 caracteres');
+      }
+
       const response = await fetch(usersURL + '/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username: name, email: email, password: password })
-      })
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password
+        })
+      });
 
       if (!response.ok) {
-        throw new Error('Error al registar usuario');
+        const errorData = await response.json().catch(() => null);
+        if (errorData?.message) {
+          throw new Error(errorData.message);
+        }
+        throw new Error(`Error al registrar usuario (${response.status})`);
       }
 
-      const data = await response.json();
-      return data;
+      // Después del registro exitoso, hacer login automático para obtener el token
+      const loginResponse = await fetch(usersURL + '/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      });
+      if (!loginResponse.ok) {
+        throw new Error('Registro exitoso pero error al iniciar sesión automáticamente');
+      }
+      const loginData = await loginResponse.json();
+      return {
+        ...loginData,
+        token: loginData.token,
+        expirationDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() // 24 horas
+      };
     } catch (err: any) {
-      setError('Error al registar usuario');
-      console.error(err);
+      const errorMessage = err.message || 'Error al registrar usuario';
+      setError(errorMessage);
+      console.error('Error en registro:', err);
+      return null;
     } finally {
       setLoading(false);
     }
@@ -36,5 +73,5 @@ export function useRegister() {
     register, 
     loading, 
     error 
-};
+  };
 }

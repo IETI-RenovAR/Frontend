@@ -1,35 +1,69 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
-import { Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Dimensions, Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useRegister } from '../../hooks/useRegister';
 
 const { width, height } = Dimensions.get('window');
 
 export default function SignUpScreen() {
   const router = useRouter();
-  const [email, setEmail] = useState('laura.rojas-r@mail.escuelaing.edu.co');
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { register, loading, error } = useRegister();
+
+  useEffect(() => {
+    // Limpiar los campos cuando se monta el componente
+    setEmail('');
+    setUsername('');
+    setPassword('');
+  }, []);
 
   const handleRegister = async () => {
     const result = await register(username, email, password);
     if (result) {
-      console.log('Usuario registrado:', result);
       try {
         await AsyncStorage.setItem('userToken', result.token);
         await AsyncStorage.setItem('tokenExpirationDate', result.expirationDate);
-        router.push('/(tabs)/loginPage');
+        // Mostrar el modal de éxito
+        setShowSuccessModal(true);
       } catch (error) {
         console.error("Error al guardar el token", error);
       }
     }
   };
 
+  const handleSuccessModalClose = () => {
+    setShowSuccessModal(false);
+    router.push('/(tabs)/loginPage');
+  };
+
   return (
     <View style={styles.containerWrapper}>
+      {/* Modal de éxito personalizado */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={showSuccessModal}
+        onRequestClose={handleSuccessModalClose}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Success</Text>
+            <Text style={styles.modalMessage}>User registered successfully!</Text>
+            <TouchableOpacity 
+              style={styles.modalButton}
+              onPress={handleSuccessModalClose}
+            >
+              <Text style={styles.modalButtonText}>OK</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
       {/* Fondo general */}
       <View style={styles.background} />
 
@@ -62,6 +96,8 @@ export default function SignUpScreen() {
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
+              placeholder="Enter your email"
+              placeholderTextColor="#999"
             />
 
             <Text style={styles.label}>NAME</Text>
@@ -69,7 +105,9 @@ export default function SignUpScreen() {
               style={styles.input}
               value={username}
               onChangeText={setUsername}
-              autoCapitalize="none"
+              autoCapitalize="words"
+              placeholder="Enter your name"
+              placeholderTextColor="#999"
             />
 
             <View style={styles.passwordFieldWrapper}>
@@ -80,6 +118,8 @@ export default function SignUpScreen() {
                   value={password}
                   onChangeText={setPassword}
                   secureTextEntry
+                  placeholder="Enter your password"
+                  placeholderTextColor="#999"
                 />
               </View>
             </View>
@@ -295,5 +335,62 @@ const styles = StyleSheet.create({
   termsLink: {
     color: '#4c2a1c',
     textDecorationLine: 'underline',
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: '#fff7ec',
+    padding: 25,
+    borderRadius: 20,
+    width: '80%',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    color: '#412f26',
+    fontFamily: 'Nunito-Bold',
+  },
+  modalMessage: {
+    fontSize: 18,
+    marginBottom: 25,
+    color: '#412f26',
+    fontFamily: 'Nunito',
+    textAlign: 'center',
+  },
+  modalButton: {
+    backgroundColor: '#412f26',
+    paddingVertical: 12,
+    paddingHorizontal: 30,
+    borderRadius: 25,
+    width: '60%',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  modalButtonText: {
+    color: '#fff7ec',
+    fontSize: 18,
+    fontWeight: '600',
+    fontFamily: 'Nunito-Bold',
   },
 });
