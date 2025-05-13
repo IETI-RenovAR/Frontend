@@ -15,18 +15,31 @@ export function useLogin() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ email: email, password: password })
-      })
+      });
+
+      const data = await response.json();
 
       if (!response.ok) {
         console.log('Error en la respuesta del servidor:', response.statusText);
-        throw new Error('Error al iniciar sesión');
+        console.log('Datos del error:', data);
+        setError(data.message || 'Error al iniciar sesión');
+        return null;
       }
 
-      const data = await response.json();
-      return data;
+      // Asegurarse de que la respuesta tenga el formato esperado
+      if (!data.token || !data.expirationDate) {
+        setError('Respuesta del servidor inválida');
+        return null;
+      }
+
+      return {
+        token: data.token,
+        expirationDate: data.expirationDate
+      };
     } catch (err: any) {
-      setError('Error al iniciar sesión');
-      console.error(err);
+      console.error('Error completo:', err);
+      setError('Error de conexión con el servidor');
+      return null;
     } finally {
       setLoading(false);
     }
@@ -36,5 +49,5 @@ export function useLogin() {
     login, 
     loading, 
     error 
-};
+  };
 }

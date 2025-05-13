@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
@@ -9,36 +8,32 @@ const { width, height } = Dimensions.get('window');
 
 export default function LoginScreen() {
   const router = useRouter();
-  const [email, setEmail] = useState('laura.rojas-r@mail.escuelaing.edu.co');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, loading, error } = useLogin();
+
   const handleLogin = async () => {
+    console.log('Intentando login con:', { email, password });
     const result = await login(email, password);
-    if (result) {
-      console.log('JWT:', result);
-      try {
-        await AsyncStorage.setItem('userToken', result.token);
-        await AsyncStorage.setItem('tokenExpirationDate', result.expirationDate);
-        router.push('/actionPage');
-      } catch (error) {
-        console.error("Error al guardar el token", error);
-      }
+    if (result && result.token) {
+      router.replace({ pathname: '/(tabs)/HomeScreen', params: { name: result.name || 'Usuario' } });
     }
+  };
+
+  const handleRegister = () => {
+    router.push('/(auth)/register');
   };
 
   return (
     <View style={styles.containerWrapper}>
-      {/* Fondo general */}
       <View style={styles.background} />
 
-      {/* Mancha gráfica */}
       <Image
         source={require('@/assets/images/login-background.png')}
         style={styles.textureImage}
         contentFit="contain"
       />
 
-      {/* LOG IN con estilos divididos */}
       <View style={styles.headerContainer}>
         <Text style={styles.header}>
           <Text style={styles.logText}>LOG</Text>
@@ -46,7 +41,6 @@ export default function LoginScreen() {
         </Text>
       </View>
 
-      {/* Contenido del formulario */}
       <ScrollView
         contentContainerStyle={styles.container}
         showsVerticalScrollIndicator={false}
@@ -60,6 +54,7 @@ export default function LoginScreen() {
               onChangeText={setEmail}
               keyboardType="email-address"
               autoCapitalize="none"
+              placeholder="Enter your email"
             />
 
             <View style={styles.passwordFieldWrapper}>
@@ -70,6 +65,7 @@ export default function LoginScreen() {
                   value={password}
                   onChangeText={setPassword}
                   secureTextEntry
+                  placeholder="Enter your password"
                 />
                 <TouchableOpacity style={styles.forgotWrapper}>
                   <Text style={styles.forgotText}>Forgot</Text>
@@ -81,6 +77,10 @@ export default function LoginScreen() {
 
             <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
               <Text style={styles.buttonText}>{loading ? 'Loading...' : 'Log in'}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={handleRegister}>
+              <Text style={styles.registerText}>Don't have an account? Register</Text>
             </TouchableOpacity>
 
             <Text style={styles.orText}>Or sign up with social account</Text>
@@ -138,10 +138,10 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   logText: {
-    color: '#fff7ec', 
+    color: '#fff7ec',
   },
   inText: {
-    color: '#4c2a1c', 
+    color: '#4c2a1c',
   },
   container: {
     flexGrow: 1,
@@ -239,6 +239,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Nunito',
   },
+  registerText: {
+    textAlign: 'center',
+    marginTop: 15,
+    color: '#4c2a1c',
+    fontSize: 14,
+    fontFamily: 'Nunito',
+  },
   orText: {
     textAlign: 'center',
     marginVertical: 30,
@@ -249,35 +256,33 @@ const styles = StyleSheet.create({
   socialButtons: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 20,
-    width: '100%',
   },
   socialButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center', 
-    borderWidth: 1,
-    borderColor: '#4c2a1c',
-    paddingVertical: 6,
-    paddingHorizontal: 20, 
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
     borderRadius: 25,
-    width: '45%',
-    marginHorizontal: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   socialIcon: {
-    width: 20,
-    height: 20,
-    marginRight: 5,
+    width: 24,
+    height: 24,
+    marginRight: 10,
   },
   googleIcon: {
-    width: 18,
-    height: 18,
+    width: 20,
+    height: 20,
     marginRight: 10,
   },
   socialText: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#4c2a1c',
+    color: '#333',
+    fontSize: 14,
     fontFamily: 'Nunito',
   },
-});
+}); 

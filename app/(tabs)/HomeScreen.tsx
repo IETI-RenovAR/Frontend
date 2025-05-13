@@ -1,3 +1,4 @@
+import { useAuth } from '@/context/AuthContext';
 import { router } from 'expo-router';
 import React, { JSX, useState } from 'react';
 import {
@@ -12,7 +13,7 @@ export default function HomeScreen(): JSX.Element {
   const [activeTab, setActiveTab] = useState<'Spaces' | 'Things'>('Spaces');
 
   const handleImageSelect = (imageKey: string) => {
-    router.push({ pathname: '/itemScreen', params: { image: imageKey } });
+    router.push({ pathname: '../itemScreen', params: { image: imageKey } });
   };
 
   return (
@@ -40,23 +41,22 @@ export default function HomeScreen(): JSX.Element {
       {/* Content by Tab */}
       <View style={styles.projectContainer}>
         {activeTab === 'Spaces' ? (
-            <>
-          <TouchableOpacity onPress={() => handleImageSelect('bedroom')} style={styles.projectButton}>
-            <Image
-              source={require('../../assets/images/bedroom.png')}
-              style={styles.image}
-            />
-            <Text style={styles.projectText}>Bedroom</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleImageSelect('kitchen')} style={styles.projectButton}>
-          <Image
-            source={require('../../assets/images/kitchen.png')}
-            style={styles.image}
-          />
-          <Text style={styles.projectText}>Kitchen</Text>
-        </TouchableOpacity>
-          
-        </>
+          <>
+            <TouchableOpacity onPress={() => handleImageSelect('bedroom')} style={styles.projectButton}>
+              <Image
+                source={require('../../assets/images/bedroom.png')}
+                style={styles.image}
+              />
+              <Text style={styles.projectText}>Bedroom</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleImageSelect('kitchen')} style={styles.projectButton}>
+              <Image
+                source={require('../../assets/images/kitchen.png')}
+                style={styles.image}
+              />
+              <Text style={styles.projectText}>Kitchen</Text>
+            </TouchableOpacity>
+          </>
         ) : (
           <>
             <TouchableOpacity onPress={() => handleImageSelect('chair')} style={styles.projectButton}>

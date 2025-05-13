@@ -7,10 +7,10 @@ export default function RoomScreen() {
     const { image } = useLocalSearchParams();
 
     const imageMap = {
-        kitchen: require('../../assets/images/kitchen.png'),
-        bedroom: require('../../assets/images/bedroom.png'),
-        chair: require('../../assets/images/chair.png'),
-        table: require('../../assets/images/table.png'),
+        kitchen: require('../assets/images/kitchen.png'),
+        bedroom: require('../assets/images/bedroom.png'),
+        chair: require('../assets/images/chair.png'),
+        table: require('../assets/images/table.png'),
       };
 
     const selectedImage = imageMap[image as keyof typeof imageMap];
@@ -18,7 +18,9 @@ export default function RoomScreen() {
     const handleBackButton = () => {
         router.push('/(tabs)/HomeScreen');
       };
-    
+    const handleScanButton = () => {
+        router.push('/scannerScreen');
+    };
     return (
       <View  style={styles.container}>
         {/* Sección superior */}
@@ -26,7 +28,7 @@ export default function RoomScreen() {
           <TouchableOpacity onPress={handleBackButton} style={styles.iconButton}>
             <Ionicons name="chevron-back-outline" style={styles.icon} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
+          <TouchableOpacity onPress={handleScanButton} style={styles.iconButton}>
             <Ionicons name="scan-sharp" style={styles.icon} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton}>
