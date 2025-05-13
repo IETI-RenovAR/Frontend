@@ -3,23 +3,25 @@ import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useLogin } from '../../hooks/useLogin';
+import { useRegister } from '../../hooks/useRegister';
 
 const { width, height } = Dimensions.get('window');
 
-export default function LoginScreen() {
+export default function SignUpScreen() {
   const router = useRouter();
   const [email, setEmail] = useState('laura.rojas-r@mail.escuelaing.edu.co');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { login, loading, error } = useLogin();
-  const handleLogin = async () => {
-    const result = await login(email, password);
+  const { register, loading, error } = useRegister();
+
+  const handleRegister = async () => {
+    const result = await register(username, email, password);
     if (result) {
-      console.log('JWT:', result);
+      console.log('Usuario registrado:', result);
       try {
         await AsyncStorage.setItem('userToken', result.token);
         await AsyncStorage.setItem('tokenExpirationDate', result.expirationDate);
-        router.push('/actionPage');
+        router.push('/(tabs)/loginPage');
       } catch (error) {
         console.error("Error al guardar el token", error);
       }
@@ -31,22 +33,22 @@ export default function LoginScreen() {
       {/* Fondo general */}
       <View style={styles.background} />
 
-      {/* Mancha gráfica */}
+      {/* Mancha gráfica debajo del texto, ubicada a la derecha */}
       <Image
-        source={require('@/assets/images/login-background.png')}
+        source={require('@/assets/images/login-background2.png')}
         style={styles.textureImage}
         contentFit="contain"
       />
 
-      {/* LOG IN con estilos divididos */}
+      {/* SIGN UP con estilos divididos */}
       <View style={styles.headerContainer}>
         <Text style={styles.header}>
-          <Text style={styles.logText}>LOG</Text>
-          <Text style={styles.inText}> IN</Text>
+          <Text style={styles.signText}>SIGN </Text>
+          <Text style={styles.upText}> UP</Text>
         </Text>
       </View>
 
-      {/* Contenido del formulario */}
+      {/* Contenido del formulario con márgenes aumentados */}
       <ScrollView
         contentContainerStyle={styles.container}
         showsVerticalScrollIndicator={false}
@@ -62,6 +64,14 @@ export default function LoginScreen() {
               autoCapitalize="none"
             />
 
+            <Text style={styles.label}>NAME</Text>
+            <TextInput
+              style={styles.input}
+              value={username}
+              onChangeText={setUsername}
+              autoCapitalize="none"
+            />
+
             <View style={styles.passwordFieldWrapper}>
               <Text style={styles.label}>PASSWORD</Text>
               <View style={styles.inputContainer}>
@@ -71,16 +81,13 @@ export default function LoginScreen() {
                   onChangeText={setPassword}
                   secureTextEntry
                 />
-                <TouchableOpacity style={styles.forgotWrapper}>
-                  <Text style={styles.forgotText}>Forgot</Text>
-                </TouchableOpacity>
               </View>
             </View>
 
             {error && <Text style={styles.errorText}>{error}</Text>}
 
-            <TouchableOpacity style={styles.button} onPress={handleLogin} disabled={loading}>
-              <Text style={styles.buttonText}>{loading ? 'Loading...' : 'Log in'}</Text>
+            <TouchableOpacity style={styles.button} onPress={handleRegister} disabled={loading}>
+              <Text style={styles.buttonText}>{loading ? 'Loading...' : 'Sign up'}</Text>
             </TouchableOpacity>
 
             <Text style={styles.orText}>Or sign up with social account</Text>
@@ -103,6 +110,12 @@ export default function LoginScreen() {
                 <Text style={styles.socialText}>Google</Text>
               </TouchableOpacity>
             </View>
+
+            <Text style={styles.termsText}>
+              By signing up you agree to our{' '}
+              <Text style={styles.termsLink}>Terms of Use</Text> and{' '}
+              <Text style={styles.termsLink}>Privacy Policy</Text>.
+            </Text>
           </View>
         </View>
       </ScrollView>
@@ -127,26 +140,26 @@ const styles = StyleSheet.create({
     width: width * 0.8,
     height: height * 0.18,
     top: height * 0.08,
-    left: -width * 0.2,
+    right: -width * 0.25, // Mantenida a la derecha
     zIndex: 1,
     opacity: 1,
   },
   headerContainer: {
     position: 'absolute',
-    top: height * 0.13,
-    left: 65,
+    top: height * 0.14,
+    left:160,
     zIndex: 2,
   },
-  logText: {
-    color: '#fff7ec', 
+  signText: {
+    color: '#4c2a1c', // Color café para "SIGN"
   },
-  inText: {
-    color: '#4c2a1c', 
+  upText: {
+    color: '#fff7ec', // Color crema para "UP"
   },
   container: {
     flexGrow: 1,
     paddingHorizontal: 20,
-    paddingTop: height * 0.3,
+    paddingTop: height * 0.28,
     paddingBottom: 40,
   },
   contentWrapper: {
@@ -204,14 +217,6 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: 'transparent',
   },
-  forgotWrapper: {
-    marginLeft: 10,
-  },
-  forgotText: {
-    fontSize: 12,
-    color: '#4c2a1c',
-    fontFamily: 'Nunito',
-  },
   button: {
     backgroundColor: '#8a715d',
     paddingVertical: 5,
@@ -255,11 +260,11 @@ const styles = StyleSheet.create({
   socialButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center', 
+    justifyContent: 'center',
     borderWidth: 1,
     borderColor: '#4c2a1c',
     paddingVertical: 6,
-    paddingHorizontal: 20, 
+    paddingHorizontal: 20,
     borderRadius: 25,
     width: '45%',
     marginHorizontal: 5,
@@ -279,5 +284,16 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#4c2a1c',
     fontFamily: 'Nunito',
+  },
+  termsText: {
+    textAlign: 'center',
+    fontSize: 13,
+    color: '#444',
+    fontFamily: 'Nunito',
+    marginTop: 50,
+  },
+  termsLink: {
+    color: '#4c2a1c',
+    textDecorationLine: 'underline',
   },
 });

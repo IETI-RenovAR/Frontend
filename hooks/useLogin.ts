@@ -18,6 +18,7 @@ export function useLogin() {
       })
 
       if (!response.ok) {
+        console.log('Error en la respuesta del servidor:', response.statusText);
         throw new Error('Error al iniciar sesión');
       }
 
