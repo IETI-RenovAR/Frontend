@@ -18,6 +18,10 @@ export default function RoomScreen() {
     const handleBackButton = () => {
         router.push('/(tabs)/HomeScreen');
       };
+
+    const handleScanButton = () => {
+        router.push('/(tabs)/scannerScreen');
+    };
     
     return (
       <View  style={styles.container}>
@@ -26,7 +30,7 @@ export default function RoomScreen() {
           <TouchableOpacity onPress={handleBackButton} style={styles.iconButton}>
             <Ionicons name="chevron-back-outline" style={styles.icon} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
+          <TouchableOpacity onPress={handleScanButton} style={styles.iconButton}>
             <Ionicons name="scan-sharp" style={styles.icon} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton}>
