@@ -12,7 +12,6 @@ export default function LoginScreen() {
   const [email, setEmail] = useState('laura.rojas-r@mail.escuelaing.edu.co');
   const [password, setPassword] = useState('');
   const { login, loading, error } = useLogin();
-
   const handleLogin = async () => {
     const result = await login(email, password);
     if (result) {

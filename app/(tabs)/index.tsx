@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff7ec',
+
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
   slogan: {
     fontSize: 12,
     fontFamily: 'Nunito-Bold',
+
     marginTop: 10,
   },
   swipeArea: {
