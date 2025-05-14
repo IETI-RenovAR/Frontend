@@ -19,7 +19,10 @@ export default function RoomScreen() {
         router.push('/(tabs)/HomeScreen');
       };
     const handleScanButton = () => {
-        router.push('/scannerScreen');
+        router.push({
+            pathname: '/scannerScreen',
+            params: { image }
+        });
     };
     return (
       <View  style={styles.container}>

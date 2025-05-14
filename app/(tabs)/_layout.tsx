@@ -3,6 +3,7 @@ import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
+import Octicons from '@expo/vector-icons/Octicons';
 import { Tabs } from 'expo-router';
 import React from 'react';
 
@@ -29,6 +30,15 @@ export default function TabLayout() {
           title: 'Home',
           tabBarIcon: ({ color }) => (
             <AntDesign name="home" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="SearchScreen"
+        options={{
+          title: 'Creations',
+          tabBarIcon: ({ color }) => (
+            <Octicons name="search" size={24} color={color} />
           ),
         }}
       />

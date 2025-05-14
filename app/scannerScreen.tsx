@@ -8,7 +8,7 @@ export default function ScannerScreen() {
   const router = useRouter();
 
   const handleBack = () => {
-    router.push('/itemScreen');
+    router.back();
   };
 
   return (
