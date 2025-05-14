@@ -55,9 +55,7 @@ export default function RoomScreen() {
   
         {/* Sección central */}
         <View style={styles.middleSection}>
-            <View style={styles.middleSection}>
-                <Image source={selectedImage} style={styles.itemImage} />
-            </View>
+            <Image source={selectedImage} style={styles.itemImage} />
         </View>
   
         {/* Sección inferior */}
