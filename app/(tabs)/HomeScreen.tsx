@@ -1,5 +1,6 @@
-import { router } from 'expo-router';
-import React, { JSX, useState } from 'react';
+import { NavigationParams } from '@/types/navigation';
+import { router, useLocalSearchParams } from 'expo-router';
+import React, { JSX, useCallback, useState } from 'react';
 import {
     Image,
     StyleSheet,
@@ -10,16 +11,29 @@ import {
 
 export default function HomeScreen(): JSX.Element {
   const [activeTab, setActiveTab] = useState<'Spaces' | 'Things'>('Spaces');
+  const { name } = useLocalSearchParams<NavigationParams>();
 
-  const handleImageSelect = (imageKey: string) => {
-    router.push({ pathname: '../itemScreen', params: { image: imageKey } });
-  };
+  // Función para capitalizar la primera letra
+  const formatName = useCallback((name: string | null | undefined): string => {
+    if (!name) return 'User';
+    return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  }, []);
+
+  const handleImageSelect = useCallback((imageKey: string) => {
+    router.push({ 
+      pathname: '../itemScreen', 
+      params: { 
+        image: imageKey,
+        name 
+      } 
+    });
+  }, [name]);
 
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.greeting}>Good morning, Laura!</Text>
+        <Text style={styles.greeting}>Good morning, {formatName(name)}!</Text>
         <Text style={styles.subGreeting}>what do you want to do today?</Text>
       </View>
 

@@ -1,29 +1,35 @@
+import { NavigationParams } from '@/types/navigation';
 import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function RoomScreen() {
-    const { image } = useLocalSearchParams();
+    const { image, name } = useLocalSearchParams<NavigationParams>();
 
     const imageMap = {
         kitchen: require('../assets/images/kitchen.png'),
         bedroom: require('../assets/images/bedroom.png'),
         chair: require('../assets/images/chair.png'),
         table: require('../assets/images/table.png'),
-      };
+    };
 
     const selectedImage = imageMap[image as keyof typeof imageMap];
 
-    const handleBackButton = () => {
-        router.push('/(tabs)/HomeScreen');
-      };
-    const handleScanButton = () => {
+    const handleBackButton = useCallback(() => {
+        router.push({ 
+          pathname: '/(tabs)/HomeScreen', 
+          params: { name } 
+        });
+    }, [name]);
+
+    const handleScanButton = useCallback(() => {
         router.push({
             pathname: '/scannerScreen',
-            params: { image }
+            params: { name, image }
         });
-    };
+    }, [name, image]);
+
     return (
       <View  style={styles.container}>
         {/* Sección superior */}

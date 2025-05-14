@@ -1,15 +1,20 @@
+import { NavigationParams } from '@/types/navigation';
 import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
+import React, { useCallback } from 'react';
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
 export default function ScannerScreen() {
-  const router = useRouter();
+  const { name, image } = useLocalSearchParams<NavigationParams>();
 
-  const handleBack = () => {
-    router.back();
-  };
+  const handleBack = useCallback(() => {
+    router.push({
+      pathname: '/itemScreen',
+      params: { name, image }
+    });
+  }, [name, image]);
 
   return (
     <View style={styles.containerWrapper}>
