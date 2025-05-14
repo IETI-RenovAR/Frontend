@@ -2,11 +2,11 @@ import { NavigationParams } from '@/types/navigation';
 import { router, useLocalSearchParams } from 'expo-router';
 import React, { JSX, useCallback, useState } from 'react';
 import {
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 export default function HomeScreen(): JSX.Element {
@@ -55,37 +55,71 @@ export default function HomeScreen(): JSX.Element {
       <View style={styles.projectContainer}>
         {activeTab === 'Spaces' ? (
           <>
-            <TouchableOpacity onPress={() => handleImageSelect('bedroom')} style={styles.projectButton}>
-              <Image
-                source={require('../../assets/images/bedroom.png')}
-                style={styles.image}
-              />
-              <Text style={styles.projectText}>Bedroom</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleImageSelect('kitchen')} style={styles.projectButton}>
-              <Image
-                source={require('../../assets/images/kitchen.png')}
-                style={styles.image}
-              />
-              <Text style={styles.projectText}>Kitchen</Text>
-            </TouchableOpacity>
+            <View style={styles.rowButtons}>
+              <TouchableOpacity onPress={() => handleImageSelect('bedroom')} style={styles.projectButton}>
+                <Image
+                  source={require('../../assets/images/bedroom.png')}
+                  style={styles.image}
+                />
+                <Text style={styles.projectText}>Bedroom</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleImageSelect('kitchen')} style={styles.projectButton}>
+                <Image
+                  source={require('../../assets/images/kitchen.png')}
+                  style={styles.image}
+                />
+                <Text style={styles.projectText}>Kitchen</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.rowButtons}>
+              <TouchableOpacity onPress={() => handleImageSelect('livingRoom')} style={styles.projectButton}>
+                <Image
+                  source={require('../../assets/images/living_room.webp')}
+                  style={styles.image}
+                />
+                <Text style={styles.projectText}>Living room</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.projectButton}>
+                <Image
+                  source={require('../../assets/images/add_Space2.png')}
+                  style={[styles.image, styles.smallImage]}
+                />
+              </TouchableOpacity>
+            </View>
           </>
         ) : (
           <>
-            <TouchableOpacity onPress={() => handleImageSelect('chair')} style={styles.projectButton}>
-              <Image
-                source={require('../../assets/images/chair.png')}
-                style={styles.image}
-              />
-              <Text style={styles.projectText}>Chair</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleImageSelect('table')} style={styles.projectButton}>
-              <Image
-                source={require('../../assets/images/table.png')}
-                style={styles.image}
-              />
-              <Text style={styles.projectText}>Table</Text>
-            </TouchableOpacity>
+            <View style={styles.rowButtons}>
+              <TouchableOpacity onPress={() => handleImageSelect('chair')} style={styles.projectButton}>
+                <Image
+                  source={require('../../assets/images/chair.png')}
+                  style={styles.image}
+                />
+                <Text style={styles.projectText}>Chair</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleImageSelect('table')} style={styles.projectButton}>
+                <Image
+                  source={require('../../assets/images/table.png')}
+                  style={styles.image}
+                />
+                <Text style={styles.projectText}>Table</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.rowButtons}>
+              <TouchableOpacity onPress={() => handleImageSelect('shelf')} style={styles.projectButton}>
+                <Image
+                  source={require('../../assets/images/shelf.webp')}
+                  style={styles.image}
+                />
+                <Text style={styles.projectText}>Shelf</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.projectButton}>
+                <Image
+                  source={require('../../assets/images/add_thing.png')}
+                  style={[styles.image, styles.smallImage]}
+                />
+              </TouchableOpacity>
+            </View>
           </>
         )}
       </View>
@@ -162,5 +196,17 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+  smallImage: {
+    width: 60,
+    height: 60,
+    marginTop: 20,
+  },
+  rowButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '100%',
+    minHeight: 140,
   },
 });

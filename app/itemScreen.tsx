@@ -10,8 +10,10 @@ export default function RoomScreen() {
     const imageMap = {
         kitchen: require('../assets/images/kitchen.png'),
         bedroom: require('../assets/images/bedroom.png'),
+        livingRoom: require('../assets/images/living_room.webp'),
         chair: require('../assets/images/chair.png'),
         table: require('../assets/images/table.png'),
+        shelf: require('../assets/images/shelf.webp'),
     };
 
     const selectedImage = imageMap[image as keyof typeof imageMap];
@@ -54,7 +56,7 @@ export default function RoomScreen() {
         {/* Sección central */}
         <View style={styles.middleSection}>
             <View style={styles.middleSection}>
-                <Image source={selectedImage} style={{ width: 200, height: 200 }} />
+                <Image source={selectedImage} style={styles.itemImage} />
             </View>
         </View>
   
@@ -108,6 +110,11 @@ export default function RoomScreen() {
         borderRadius: 20,
         marginVertical: 5,
     },      
+    itemImage: {
+      width: 200,
+      height: 200,
+      resizeMode: 'contain',
+    },
   });
   
   
