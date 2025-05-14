@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="207da26a-57a8-4ec1-b94e-5013af0c6130" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/HomeScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/itemScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/itemScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scannerScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/scannerScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/useLogin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/useLogin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/ProfileScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/ProfileScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

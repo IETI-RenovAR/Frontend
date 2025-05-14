@@ -1,14 +1,16 @@
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { NavigationParams } from '@/types/navigation';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
 import Octicons from '@expo/vector-icons/Octicons';
-import { Tabs } from 'expo-router';
+import { Tabs, useLocalSearchParams } from 'expo-router';
 import React from 'react';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const { name } = useLocalSearchParams<NavigationParams>();
 
   return (
     <Tabs
@@ -32,6 +34,7 @@ export default function TabLayout() {
             <AntDesign name="home" size={24} color={color} />
           ),
         }}
+        initialParams={{ name }}
       />
       <Tabs.Screen
         name="SearchScreen"
@@ -41,6 +44,7 @@ export default function TabLayout() {
             <Octicons name="search" size={24} color={color} />
           ),
         }}
+        initialParams={{ name }}
       />
       <Tabs.Screen
         name="ProfileScreen"
@@ -50,6 +54,7 @@ export default function TabLayout() {
             <AntDesign name="user" size={24} color={color} />
           ),
         }}
+        initialParams={{ name }}
       />
       <Tabs.Screen
         name="CartScreen"
@@ -59,6 +64,7 @@ export default function TabLayout() {
             <Feather name="shopping-cart" size={24} color={color} />
           ),
         }}
+        initialParams={{ name }}
       />
     </Tabs>
   );
