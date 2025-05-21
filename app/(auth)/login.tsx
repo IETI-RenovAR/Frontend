@@ -16,10 +16,10 @@ export default function LoginScreen() {
     console.log('Intentando login con:', { email, password });
     const result = await login(email, password);
     if (result && result.token) {
-      router.replace({ pathname: '/(tabs)/HomeScreen', params: { name: result.name || 'Usuario' } });
+      router.replace({ pathname: '/(tabs)/HomeScreen', params: { name: result.name || 'Usuario', role: result.role || 'user' } });
     }
   };
-
+  
   const handleRegister = () => {
     router.push('/(auth)/register');
   };

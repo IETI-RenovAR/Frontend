@@ -3,16 +3,16 @@ import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function CartScreen() {
+export default function AdminScreen() {
   const { name } = useLocalSearchParams<NavigationParams>();
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Cart</Text>
+        <Text style={styles.headerTitle}>Admin Panel</Text>
       </View>
       <View style={styles.content}>
-        <Text style={styles.text}>Your shopping cart</Text>
+        <Text style={styles.text}>Welcome to the admin panel</Text>
       </View>
     </View>
   );

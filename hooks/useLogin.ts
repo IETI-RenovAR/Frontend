@@ -45,12 +45,14 @@ export function useLogin() {
       });
 
       let username = email.split('@')[0]; // valor por defecto
+      let userRole = "USER"; // valor por defecto
       if (userResponse.ok) {
         const userData = await userResponse.json();
         // Buscamos el usuario que coincida con el email
         const user = userData.find((user: any) => user.email === email);
         if (user && user.username) {
           username = user.username;
+          userRole = Array.isArray(user.roles) && user.roles.length > 0 ? user.roles[0] : "USER";
         }
       }
 
@@ -60,7 +62,8 @@ export function useLogin() {
       return {
         token: loginData.token,
         expirationDate: expirationDate,
-        name: username
+        name: username,
+        role: userRole
       };
 
     } catch (err: any) {

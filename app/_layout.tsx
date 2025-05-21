@@ -8,12 +8,8 @@ import { useProtectedRoute } from '@/hooks/useProtectedRoute';
 import { AuthProvider, useAuth } from '@/context/AuthContext';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
-// Componente para manejar la navegación protegida
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
-  
-  // Uso del hook para proteger rutas
-
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
