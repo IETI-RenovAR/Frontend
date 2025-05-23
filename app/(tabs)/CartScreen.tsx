@@ -12,7 +12,7 @@ export default function CartScreen() {
         <Text style={styles.headerTitle}>Cart</Text>
       </View>
       <View style={styles.content}>
-        <Text style={styles.text}>Your shopping cart</Text>
+        <Text style={styles.text}>Your shopping cart is empty</Text>
       </View>
     </View>
   );

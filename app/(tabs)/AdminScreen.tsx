@@ -1,7 +1,7 @@
 import { NavigationParams } from '@/types/navigation';
 import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 export default function AdminScreen() {
   const { name } = useLocalSearchParams<NavigationParams>();
@@ -9,10 +9,15 @@ export default function AdminScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Admin Panel</Text>
+        <Text style={styles.headerTitle}>Hi, Admin</Text>
+        <Text style={styles.subTitle}>User Statistics</Text>
       </View>
-      <View style={styles.content}>
-        <Text style={styles.text}>Welcome to the admin panel</Text>
+      <View style={styles.imageContainer}>
+        <Image 
+          source={require('../../assets/images/adminPage.png')}
+          style={styles.image}
+          resizeMode="cover"
+        />
       </View>
     </View>
   );
@@ -27,24 +32,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#4B3425',
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
-    paddingTop: 50,
+    paddingTop: 70,
+    paddingBottom: 60,
     alignItems: 'center',
-    height: 150,
   },
   headerTitle: {
     fontSize: 28,
     fontWeight: 'bold',
     color: '#fff7ec',
-    marginBottom: 20,
+    marginBottom: 5,
   },
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  text: {
+  subTitle: {
     fontSize: 18,
-    color: '#4B3425',
+    color: '#fff7ec',
+    opacity: 0.9,
   },
+  imageContainer: {
+    flex: 1,
+    overflow: 'hidden',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  }
 }); 

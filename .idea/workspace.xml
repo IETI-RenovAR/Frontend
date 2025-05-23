@@ -7,15 +7,9 @@
     <list default="true" id="207da26a-57a8-4ec1-b94e-5013af0c6130" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(auth)/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/CartScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/CartScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/HomeScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/HomeScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/itemScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/itemScreen.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/useLogin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/useLogin.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/navigation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/navigation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/AdminScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/AdminScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/ProfileScreen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/ProfileScreen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/adminPage.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/adminPage.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,20 +30,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "ScreenshotViewer.SavePath": "C:/Users/Natar/OneDrive/Documentos/U/Noveno Semestre/IETI/Tercer Tercio/Proyecto/Frontend",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "app",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Natar/OneDrive/Documentos/U/Noveno Semestre/IETI/Tercer Tercio/Proyecto/Frontend"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;ScreenshotViewer.SavePath&quot;: &quot;C:/Users/Natar/OneDrive/Documentos/U/Noveno Semestre/IETI/Tercer Tercio/Proyecto/Frontend&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;app&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Natar/OneDrive/Documentos/U/Noveno Semestre/IETI/Tercer Tercio/Proyecto/Frontend&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

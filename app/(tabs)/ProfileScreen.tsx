@@ -56,7 +56,9 @@ export default function ProfileScreen() {
         <View style={styles.sectionContent}>
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
-              <Feather name="folder" size={24} color="#412f26" />
+              <View style={styles.iconContainer}>
+                <Feather name="folder" size={24} color="#412f26" />
+              </View>
               <Text style={styles.menuItemText}>Saved</Text>
             </View>
             <MaterialIcons name="arrow-forward-ios" size={14} color="#412f26" />
@@ -64,7 +66,9 @@ export default function ProfileScreen() {
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
-              <Octicons name="download" size={24} color="#412f26" />
+              <View style={styles.iconContainer}>
+                <Octicons name="download" size={24} color="#412f26" />
+              </View>
               <Text style={styles.menuItemText}>Downloads</Text>
             </View>
             <MaterialIcons name="arrow-forward-ios" size={14} color="#412f26" />
@@ -78,7 +82,9 @@ export default function ProfileScreen() {
         <View style={styles.sectionContent}>
           <View style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
-              <FontAwesome name="moon-o" size={24} color="#412f26" />
+              <View style={styles.iconContainer}>
+                <FontAwesome name="moon-o" size={24} color="#412f26" />
+              </View>
               <Text style={styles.menuItemText}>Dark Mode</Text>
             </View>
             <Switch
@@ -91,7 +97,9 @@ export default function ProfileScreen() {
 
           <TouchableOpacity style={[styles.menuItem, { paddingTop: 5 }]}>
             <View style={styles.menuItemLeft}>
-              <Entypo name="inbox" size={24} color="#412f26" />
+              <View style={styles.iconContainer}>
+                <Entypo name="inbox" size={24} color="#412f26" />
+              </View>
               <Text style={styles.menuItemText}>Suscription</Text>
               <Text style={styles.freeText}>Free</Text>
             </View>
@@ -189,9 +197,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  menuItemRight: {
-    flexDirection: 'row',
+  iconContainer: {
+    width: 30,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   menuItemText: {
     fontSize: 16,
